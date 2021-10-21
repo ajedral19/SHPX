@@ -676,6 +676,7 @@ nav .nav_container .navbar.active {
   position: absolute;
   width: 234px;
   height: 215px;
+  padding: 0 2em 0 0;
   z-index: 1;
   left: 0;
   top: 50%;
@@ -836,6 +837,7 @@ nav .nav_container .navbar.active {
   background: #faf4ef;
   display: block;
   padding: 20px 20px;
+  cursor: pointer;
 }
 
 .showcase .content:not(.slides_container) .slider_control .btn_slider_control svg {
