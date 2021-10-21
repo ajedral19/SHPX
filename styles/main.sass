@@ -1,0 +1,675 @@
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+// @font-face
+//     font-family: ;
+//     src: url();
+
+$clr-text: #4b4b4b
+$clr-bg: #ffffff
+$clr-theme: #faf4ef
+
+html
+    scroll-behavior: smooth
+
+body
+    font-family: 'Roboto', sans-serif
+    color: $clr-text
+    background: $clr-bg
+    font-size: 24px
+
+@mixin gaps()
+    $prefix: ("m": margin, "p": padding)
+    $dir: ("t": top, "l": left, "b": bottom, "r": right)
+    @each $pkey, $pval in $prefix
+        @each $dkey, $dval in $dir
+            @for $i from 0 through 8
+                .#{$pkey}#{$dkey}-#{$i}
+                    #{$pval}-#{$dval}: #{$i}em
+        
+@include gaps()    
+
+.container
+    max-width: 1220px
+    width: 100%
+    padding: 0 1.42em
+    margin: auto
+
+button, input
+    border: none
+    font-family: inherit
+    font-size: inherit
+    color: inherit
+    border: none
+    outline: none
+    background: none
+
+ul
+    list-style: none
+
+a
+    text-decoration: none
+    color: inherit
+
+p
+    font-size: 20px
+    line-height: 30px
+
+svg
+    width: 100%
+    height: 100%
+    display: block
+    vertical-align: middle
+
+section
+    padding: 3em 0
+    position: relative
+    width: 100%
+    overflow: hidden
+
+.capitalize
+    text-transform: capitalize
+
+// font-family: 'DM Serif Display', serif
+// font-family: 'Roboto', sans-serif;
+
+.title-1
+    font-size: 30px
+    line-height: 30px
+.title-2
+    font-size: 26px
+.title-3
+    font-size: 20px
+.title-normal
+    font-size: 24px
+
+[class*='title-']
+    font-family: 'DM Serif Display', serif
+    letter-spacing: 2px
+    
+.sub-headline
+    font-size: 11.5px
+    line-height: 13.8px
+
+.btn
+    padding: 15px 20px
+    min-width: 175px
+    text-transform: capitalize
+    cursor: pointer
+    
+    &.primary
+        background: $clr-bg
+        color: $clr-text
+
+    &.secondary
+        background: $clr-text
+        color: $clr-bg
+
+    &:hover
+        &.primary
+            background: darken($clr-bg, 10%)
+        &.secondary
+            background: darken($clr-text, 20%)
+
+.btn-icon
+    display: block
+    width: 0
+    height: 0
+    min-width: 32px
+    min-height: 32px
+    max-width: 32px
+    max-height: 32px
+    color: $clr-text
+    padding: 2px
+    cursor: pointer
+
+    &.large
+        min-width: 40px
+        min-height: 40px
+        max-width: 40px
+        max-height: 40px
+
+    &:hover
+        color: darken($clr-theme, 30%)
+
+
+.search_field
+    display: block
+    width: 100%
+    min-height: 55px
+    max-height: 55px
+    overflow: hidden
+    height: 0
+    border: 1px solid rgba($color: $clr-text, $alpha: .45)
+    .field
+        width: 100%
+        height: 100%
+        padding: 0 .75em
+        display: block
+
+.menu
+    display: flex
+    flex-flow: row wrap
+
+    .item
+        flex: 1 0 100%
+        &:not(:last-child)
+            border-bottom: 1px solid $clr-theme
+            
+        a
+            display: block
+            font-weight: 500
+            padding: .75em 0
+            text-transform: capitalize
+
+
+.item_card
+    position: relative
+    max-width: 286px
+    height: 364px
+    padding: 36px
+    background: $clr-theme
+    border-radius: 0 0 0 50px
+    margin: auto
+    cursor: pointer
+    perspective: 500px
+    transform-style: preserve-3d
+    // transition: transform .3s ease
+    &::before
+        content: ''
+        position: absolute
+        width: 100%
+        height: 100%
+        border-radius: 0 0 0 50px
+        background: linear-gradient(45deg, darken($clr-theme, 10%) 0%, transparent 40%)
+        left: 0
+        top: 0
+    .title
+        transform: translate3d(0, 0, 30px)
+    .display_image
+        position: absolute
+        display: block
+        width: 100%
+        // height: 75%
+        height: auto
+        bottom: 0
+        left: 50%
+        text-align: center
+        transform: translate3d(-50%, 0, 40px)
+        .image
+            position: relative
+            // height: auto
+            max-height: 250px
+            max-width: 270px
+            bottom: -.75em
+            // bottom: -1em
+            // left: 50%
+
+nav
+    .nav_container
+        background: $clr-bg
+        padding: 35px 32px
+        margin: auto
+
+        .test
+            position: relative
+            display: block
+            height: 100%
+            width: 100%
+            .logo .logo_wrap
+                max-width: 86px
+                display: block
+
+            .toggler
+                position: absolute
+                top: 50%
+                right: 0
+                transform: translateY(-50%)
+
+                svg .rec
+                    transform: translateX(0)
+                    transition: transform .3s ease
+
+                &.toggled
+                    svg .rec
+                        &.top_rec
+                            transform: translateX(-50%)
+                        &.bot_rec
+                            transform: translateX(50%)
+        .navbar
+            // padding: 35px 0
+            position: relative
+            overflow: hidden
+            height: 0
+            margin: 0 -32px
+            padding: 0 32px
+            transition: height .3s ease
+
+            .navbar_row
+                position: relative
+                // top: 100%
+                width: 100%
+                // height: 100%
+                display: flex
+                flex-flow: row wrap
+                align-items: center
+                margin: 55px 0 0
+
+            .navbar_col
+                flex: 1 0 100%
+
+            .navbar_buttons
+                order: 1
+                margin-bottom: 1em
+                display: flex
+                align-items: center
+
+                .search
+                    position: relative
+                    height: 100%
+                    width: 100%
+                    margin-right: 15px
+                    .field
+                        padding-right: 2em
+
+                .search_button, .cart_button
+                    min-width: 28px
+                    min-height: 28px
+                    max-width: 28px
+                    max-height: 28px
+
+                .search_button
+                    position: absolute
+                    top: 50%
+                    transform: translateY(-50%)
+                    right: .75em
+
+            .navbar_menu
+                order: 2
+                .nav_link
+                    color: $clr-text
+                    transition: color .3s ease
+                    &:hover
+                        transition: color .1s ease
+                        color: darken($clr-theme, 30%)
+
+            &.active
+                height: auto
+
+.banner
+    height: 100vh
+    max-height: 370px
+    position: relative
+    overflow-x: clip
+    .wrapper
+        position: relative
+        .heading
+            position: absolute
+            width: 234px
+            height: 215px
+            z-index: 1
+            left: 0
+            top: 50%
+            transform: translateY(-50%)
+            backdrop-filter: blur(15px) brightness(110%)
+            display: flex
+            justify-content: center
+            flex-flow: column
+
+        .background
+            position: relative
+            overflow: hidden
+            border-radius: 0 0 0 60px
+            width: 538px
+            height: 365px
+            left: 25%
+            .absolute_img
+                position: absolute
+                width: auto
+                height: 100%
+                top: 50%
+                left: 50%
+                transform: translate(-50%, -50%)
+
+.products
+    position: relative
+    .products_list
+        display: flex
+        flex-flow: row nowrap
+        margin: 0 -30px
+        overflow: auto
+        padding: 0 15px 2em
+
+        .product_item
+            flex: 1 0 286px
+            padding: 0 15px
+
+.drop-down
+    display: block
+    width: auto
+    position: absolute
+    top: -2.25em
+    right: 0
+    z-index: 2
+    text-align: right
+    padding-right: 1em
+    .selected
+        font-weight: 500
+        text-transform: capitalize
+        position: relative
+        cursor: pointer
+        &::before
+            content: ''
+            background: url('https://api.iconify.design/ri:arrow-drop-down-fill.svg') no-repeat center center / contain;
+            position: absolute
+            width: 24px
+            height: 24px
+            right: -1em
+
+    .options
+        background: $clr-text
+        color: $clr-bg
+        margin-right: -1em
+        overflow: hidden
+        transition: height .3s ease
+        height: 100%
+        
+        .option
+            font-weight: 500
+            min-width: 120px
+            padding-right: 1em
+            cursor: pointer
+            text-transform: capitalize
+            
+            &:first-child
+                padding-top: .75em
+            &:last-child
+                padding-bottom: .75em
+                
+            &:not(:last-child)
+                margin-bottom: .5em
+
+            &:hover
+                color: darken($clr-theme, 30%)
+                
+        &.collapse
+            transition: height .3s ease
+            height: 0
+
+.showcase
+    display: flex
+    flex-flow: row wrap
+
+    .content
+        flex: 1 0 100%
+
+        &:not(.slides_container)
+            .slider_control
+                display: flex
+                flex-flow: row nowrap
+                margin-top: 1.5em
+                .btn_slider_control
+                    background: $clr-theme
+                    display: block
+                    padding: 20px 20px
+                    svg
+                        width: 32px
+                    &:not(:last-child)
+                        margin-right: .5em
+                    &.disabled
+                        opacity: .5
+                        
+
+            
+            
+    .slides_container
+        position: relative
+        &::before
+            content: ''
+            position: absolute
+            width: 100%
+            height: 27%
+            background: $clr-theme
+            right: 50%
+            top: 10%
+            z-index: -1
+        .slideshow
+            position: relative
+            width: 100vw
+            height: 377px
+            display: block
+            border-radius: 0 0 0  60px
+            overflow: hidden
+
+            .slide
+                position: absolute
+                overflow: hidden
+                width: 100%
+                height: 100%
+                top: 50%
+                left: 50%
+                transform: translate(-50%, -50%)
+                opacity: 0
+                transition: opacity .3s ease
+                .slide_image
+                    position: absolute
+                    width: 100%
+                    height: 100%
+                    object-fit: cover
+                    top: 50%
+                    left: 50%
+                    transform: translate(-50%, -50%)
+                // &.active
+                //     opacity: 1
+
+            
+
+footer
+    padding: 3em 0 38px
+    .footer_block
+        background: $clr-theme
+        padding: 35px
+        border-radius: 0 50px 0 0
+        .title
+            line-height: 45px
+        .buttons
+            .btn:not(:last-child)
+                margin-bottom: .75em
+                
+
+@media screen and ( min-width: 768px )
+    .item_card
+        position: relative
+        max-width: 366px
+        height: 420px
+
+        .display_image .image
+            max-height: 330px
+            max-width: 330px
+
+    p
+        font-size: 24px
+        line-height: 36px
+    .title-1
+        font-size: 64px
+        line-height: 64px
+    .title-2
+        font-size: 36px
+    .title-3
+        font-size: 24px
+
+    .sub-headline
+        font-size: 24px
+        line-height: 28.8px
+
+    .banner
+        max-height: 780px
+        .wrapper
+            position: relative
+            &::before
+                content: ''
+                position: absolute
+                width: 100%
+                height: 210px
+                background: $clr-theme
+                left: 50%
+                top: 100px
+            .heading
+                width: 492px
+                height: 452px
+                top: 284px
+                transform: unset
+                // bottom: 0
+            .background
+                width: 85%
+                max-width: 963px
+                height: 654px
+                left: unset
+                float: right
+                top: 30px
+
+    .products
+        .products_list
+            margin: -33px
+            flex-flow: row wrap
+            padding: 0
+            overflow: unset
+
+            .product_item
+                flex: 1 0 calc(100% / 2)
+                padding: 33px
+
+    .showcase
+        .content
+            flex: 1
+            &:not(.slides_container)
+                display: flex
+                flex-flow: column
+                justify-content: center
+                padding: 68px
+                .slider_control
+                    margin-top: 2em
+        .slides_container
+            .slideshow
+                width: 735px
+                height: 780px
+                display: block
+                border-radius: 0 0 0 100px
+
+
+    footer
+        padding: 4em 0 88px
+        .footer_block
+            background: $clr-theme
+            padding: 88px
+            .title
+                line-height: 96px
+            .buttons
+                .btn:not(:last-child)
+                    margin-bottom: unset
+                    margin-right: .75em
+
+@media screen and ( min-width: 1220px )
+
+    .drop-down
+        position: relative
+        top: 0
+        margin: 2em 0
+        .selected
+            display: none
+        .options
+            height: 100%
+            overflow: unset
+            background: none
+            color: $clr-text
+            display: flex
+            flex-flow: row
+            align-items: center
+            justify-content: center
+            gap: 60px
+            .option
+                opacity: .5
+                &:first-child, &:last-child, &:not(:last-child)
+                    margin: 0
+                    padding: 0
+                min-width: unset
+                margin: 0
+                &.option_selected
+                    opacity: 1
+
+    section
+        padding: 4em 0
+    .container
+        padding: 0
+
+    .menu .item
+        flex: 0
+        &:not(:last-child)
+            border-bottom: none
+            margin-right: 60px
+        a
+            display: block
+            padding: 0
+
+    nav
+        .nav_container
+            display: flex
+            flex-flow: row nowrap
+            align-items: center
+            padding: 46px 0
+            max-width: 1220px
+            .test
+                flex: 0 0 30%
+                margin-bottom: 0
+                .toggler
+                    display: none
+            .navbar
+                flex: 1
+                margin: 0
+                padding: 0
+                height: 100%
+                overflow: unset
+                .navbar_row
+                    top: 0
+                    position: relative
+                    justify-content: space-between
+                    margin: 0
+                    .navbar_col
+                        flex: 1
+                        order: unset
+                        margin: 0
+
+                    .navbar_buttons
+                        flex: 0
+                        .search
+                            width: auto
+                            margin-right: 1em
+                            .search_field
+                                // display: none
+                                display: unset
+                                position: absolute
+                                top: 50%
+                                transform: translateY(-50%)
+                                right: -.5em
+                                width: 0
+                                border: 1px solid transparent
+                                opacity: 0
+                                transition-property: width, border, opacity
+                                transition-timing-function: ease
+                                transition-duration: .6s
+                                &.active
+                                    opacity: 1
+                                    width: 250px
+                                    border: 1px solid rgba($color: $clr-text, $alpha: .45)
+                            .search_button
+                                position: relative
+                                transform: unset
+                                top: unset
+                                right: unset
+
+    .products .products_list .product_item
+        flex: 1 0 calc(100% / 3)
+        padding: 33px
+    
